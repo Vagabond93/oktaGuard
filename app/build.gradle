@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    namespace 'com.auth0.guardian.sample'
+    compileSdkVersion 33
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        applicationId "com.auth0.guardian.sample"
+        minSdkVersion 22
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':guardian')
+
+    implementation platform('com.google.firebase:firebase-bom:22.1.0')
+    // FCM
+    implementation 'com.google.firebase:firebase-core'
+    implementation 'com.google.firebase:firebase-messaging'
+
+    implementation 'com.google.android.material:material:1.6.1'
+    // GSON
+    implementation 'com.google.code.gson:gson:2.9.1'
+    // EventBus
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    // ZXing QR decoder deps
+    implementation 'com.google.zxing:core:3.5.0'
+}
